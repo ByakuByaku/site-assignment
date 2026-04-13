@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Сезонный Крамбл - Мой сайт</title>
+        <link rel="stylesheet" href="styles.css" />
+    </head>
+    <body class="product-page">
+        <nav>
+            <ul>
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="catalog.html">Каталог</a></li>
+                <li><a href="cart.html">Корзина</a></li>
+            </ul>
+        </nav>
+        <hr />
+        <header>
+            <h1>«Сезонный Крамбл»</h1>
+        </header>
+
+        <main>
+            <section>
+                <h2>Фотография товара</h2>
+                <a href="pie.jpg" target="_blank">
+                    <img src="small_pie.png" alt="крамбл пирог" width="369" height="277" class="scale-product" />
+                </a>
+                <p><small>Нажмите на изображение для просмотра в полном размере</small></p>
+            </section>
+            <section>
+                <h2>Описание</h2>
+                <p>
+                    Воплощение лета в индивидуальной упаковке. Под рассыпчатой, тающей во рту крошкой из песочного теста
+                    с миндалем скрывается сочная начинка из сезонных ягод: черники, малины и смородины.
+                </p>
+                <p>
+                    Универсальный, сытный, с идеальным балансом сладости и кислинки. Лучший выбор для тех, кто ищет «тот
+                    самый» домашний хлеб.
+                </p>
+            </section>
+            <details>
+                <summary class="hidden-block">Характеристики</summary>
+                <section>
+                    <ul class="product-attributes">
+                        <li><b>Вес: </b>150 г (±10 г)</li>
+                        <li>
+                            <b>Состав:</b> ягоды свежие (черника, малина, красная смородина), мука пшеничная в/с, масло
+                            сливочное, сахар тростниковый, миндальная стружка, крахмал кукурузный, соль, лимонная цедра.
+                        </li>
+                        <li><b>Срок годности:</b> 24 часа с момента выпечки.</li>
+                        <li>
+                            <b>Пищевая ценность (на 100 г):</b> ~250 ккал, белки — 7 г, жиры — 5 г, углеводы — 45 г.
+                        </li>
+                        <li><b>Аллергены:</b> глютен, молоко, миндаль.</li>
+                    </ul>
+                </section>
+            </details>
+            <section>
+                <h3>279 рублей</h3>
+                <button type="button" class="c-button" data-id="3" data-name="Сезонный Крамбл" data-price="279">
+                    Добавить в корзину
+                </button>
+            </section>
+        </main>
+        <hr />
+        <footer>
+            <p>&copy; Все права защищены, 2026</p>
+        </footer>
+
+        <script>
+            function getCart() {
+                let cart = localStorage.getItem("cart");
+                return cart ? JSON.parse(cart) : [];
+            }
+            function saveCart(cart) {
+                localStorage.setItem("cart", JSON.stringify(cart));
+            }
+            function addToCart(productId, productName, productPrice) {
+                let cart = getCart();
+                let existingItem = cart.find((item) => item.id === productId);
+
+                if (existingItem) {
+                    existingItem.quantity += 1;
+                } else {
+                    cart.push({
+                        id: productId,
+                        name: productName,
+                        price: Number(productPrice),
+                        quantity: 1
+                    });
+                }
+
+                saveCart(cart);
+                alert("Товар добавлен в корзину!");
+            }
+            const addButtons = document.querySelectorAll("[data-id]");
+            addButtons.forEach((button) => {
+                button.addEventListener("click", function (event) {
+                    const productId = this.dataset.id;
+                    const productName = this.dataset.name; 
+                    const productPrice = this.dataset.price; 
+
+                    if (productId && productName && productPrice) {
+                        addToCart(productId, productName, productPrice);
+                    } else {
+                        console.error("Не хватает данных о товаре на кнопке");
+                    }
+                });
+            });
+        </script>
+    </body>
+</html>

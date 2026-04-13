@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Каталог - Мой сайт</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="index.html">Главная</a></li>
+            <li><a href="catalog.html">Каталог</a></li>
+            <li><a href="cart.html">Корзина</a></li>
+        </ul>
+    </nav>
+    <hr> 
+    <header>
+        <h1>Каталог</h1>
+    </header>
+    <main>
+        <section>
+            <button class="c-button" data-filter="all">Все</button>
+            <button class="c-button" data-filter="bread">Хлеб</button>
+            <button class="c-button" data-filter="bun">Булочки</button>
+            <button class="c-button" data-filter="pie">Пироги</button>
+        </section>
+        <br>
+        <section class="catalog-grid" id="catalog">
+            <div data-category="bread">
+                <img src="small_bread.png" alt="Хлеб на двойной закваске с семечками и изюмом" width="312" height="192">
+                <p><a href="product.html">Хлеб на двойной закваске с семечками и изюмом"</a></p>
+            </div>
+            
+            <div data-category="bun">
+                <img src="big_briosh.jpg" alt="Сдобная булочка с начинкой из марципана и крошкой из зернового кофе" width="336" height="336">
+                <p><a href="product2.html">Сдобная булочка с начинкой из марципана и крошкой из зернового кофе"</a></p>
+            </div>
+            
+            <div data-category="pie">
+                <img src="small_pie.png" alt="«Сезонный Крамбл»" width="369" height="277">
+                <p><a href="product3.html">Пирог-крамбл со свежими ягодами и миндальной стружкой</a></p>
+            </div>
+            
+            <div data-category="bun">
+                <img src="small_bun.png" alt="" width="497" height="385">
+                <p><a href="product4.html">Сдобная булочка</a></p>
+            </div>
+        </section>
+    </main>
+    <hr>
+    <footer>
+        <p>&copy; Все права защищены, 2026</p>
+    </footer>
+    <script>
+         const filterButtons = document.querySelectorAll(".c-button");
+    const products = document.querySelectorAll("#catalog div");
+
+    filterButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+            const filter = button.dataset.filter;
+
+            products.forEach((product) => {
+                const category = product.dataset.category;
+
+                if (filter === "all" || category === filter) {
+                    product.style.display = "block";
+                } else {
+                    product.style.display = "none";
+                }
+            });
+        });
+    });
+    </script>
+</body>
+</html>

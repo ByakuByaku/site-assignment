@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Корзина</title>
+        <link rel="stylesheet" href="styles.css" />
+    </head>
+    <body>
+        <nav>
+            <ul>
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="catalog.html">Каталог</a></li>
+                <li><a href="cart.html">Корзина</a></li>
+            </ul>
+        </nav>
+        <hr />
+
+        <header>
+            <h1>Список выбранных товаров</h1>
+        </header>
+        <main>
+            <div id="cart-items"></div>
+
+            <h3>Итого: <span id="total-price">0</span> ₽</h3>
+
+            <button type="button" class="c-button" id="checkout-btn">Оплатить</button>
+            <button id="clear-cart" class="c-button">Очистить корзину</button>
+        </main>
+        <script>
+            let cart = [];
+
+            const loadCart = () => {
+                const data = localStorage.getItem("cart");
+                cart = data ? JSON.parse(data) : [];
+            };
+
+            const saveCart = () => {
+                localStorage.setItem("cart", JSON.stringify(cart));
+            };
+
+            const renderCart = () => {
+                loadCart();
+                const cartContainer = document.getElementById("cart-items");
+                const totalPriceElement = document.getElementById("total-price");
+
+                cartContainer.innerHTML = "";
+
+                if (cart.length === 0) {
+                    cartContainer.innerHTML = "<p>Корзина пуста</p>";
+                    totalPriceElement.textContent = "0";
+                    return;
+                }
+
+                let total = 0;
+                cart.forEach((item) => {
+                    total += item.price * item.quantity;
+                    const itemDiv = document.createElement("div");
+                    itemDiv.style.marginBottom = "15px";
+                    itemDiv.innerHTML = `
+                        <strong>${item.name}</strong><br>
+                        Цена: ${item.price} ₽<br>
+                        Количество: 
+                        <button onclick="changeQuantity('${item.id}', -1)">-</button>
+                        ${item.quantity}
+                        <button onclick="changeQuantity('${item.id}', 1)">+</button>
+                        <br>
+                        <button onclick="removeItem('${item.id}')">Удалить</button>
+                        <hr>
+                    `;
+                    cartContainer.appendChild(itemDiv);
+                });
+                totalPriceElement.textContent = total;
+            };
+
+            window.changeQuantity = (productId, delta) => {
+                loadCart();
+                const itemIndex = cart.findIndex((i) => i.id === productId);
+                if (itemIndex !== -1) {
+                    cart[itemIndex].quantity += delta;
+                    if (cart[itemIndex].quantity <= 0) {
+                        cart.splice(itemIndex, 1);
+                    }
+                    saveCart();
+                    renderCart();
+                }
+            };
+
+            window.removeItem = (productId) => {
+                loadCart();
+                cart = cart.filter((i) => i.id !== productId);
+                saveCart();
+                renderCart();
+            };
+
+            document.getElementById("checkout-btn").addEventListener("click", () => {
+                loadCart();
+                if (cart.length === 0) {
+                    alert("Корзина пуста! Добавьте товары перед оплатой.");
+                    return;
+                }
+                alert("Переход к оплате...");
+                cart = [];
+                saveCart();
+                renderCart();
+            });
+
+            document.getElementById("clear-cart").addEventListener("click", () => {
+                cart = [];
+                saveCart();
+                renderCart();
+            });
+
+            document.addEventListener("DOMContentLoaded", renderCart);
+        </script>
+    </body>
+</html>

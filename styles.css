@@ -1,0 +1,164 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: rgb(255, 248, 240);
+    margin: 0;
+    padding: 20px;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+}
+nav ul li a {
+    text-decoration: none;
+    color: #5e3c23;
+    font-weight: bold;
+    font-size: 18px;
+    padding: 5px 10px;
+    border-radius: 20px;
+    border-bottom: 2px solid #e4c7a2;
+}
+nav ul li a:hover {
+    background-color: #d9b48f;
+    color: #fff;
+}
+li {
+    margin-bottom: 5px;
+}
+
+
+h1 {
+    color: #7b4b2d;
+    border-bottom: 2px solid #e4c7a2;
+    padding-bottom: 10px;
+    margin-top: 30px;
+}
+h2 {
+    color: #9b6b43;
+    margin-top: 30px;
+}
+
+footer {
+    margin-top: 40px;
+    text-align: center;
+    font-size: 0.9em;
+    color: #aaa;
+    border-top: 1px solid #e4d5c4;
+    padding-top: 20px;
+}
+
+.catalog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 25px;
+    background: transparent;
+    padding: 0;
+    box-shadow: none;
+}
+
+.catalog-grid > div {
+    background: #fff;
+    border: 1px solid #eedcc9;
+    border-radius: 24px;
+    padding: 20px 15px 15px 15px;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.05);
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: auto;
+    margin: 0;
+}
+
+.catalog-grid > div:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 20px rgba(0,0,0,0.1);
+}
+
+.catalog-grid > div img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 16px;
+    margin-bottom: 15px;
+    background-color: #f9f2ea;
+}
+
+.catalog-grid > div p {
+    margin: 5px 0 0;
+    font-weight: 600;
+    font-size: 1.1rem;
+    line-height: 1.4;
+    text-decoration: none;
+    color: #5e3c23;
+}
+
+.catalog-grid > div p a {
+    text-decoration: none;
+    color: #5e3c23;
+}
+
+.catalog-grid > div p a:hover {
+    color: #a56535;
+    text-decoration: underline;
+}
+
+
+.product-page h2 {
+    color: #5e3c23;            
+    font-size: 18px;
+    font-weight: 700;     
+    background-color: rgb(245, 235, 220);
+    padding: 8px 15px;
+    border-radius: 8px;
+    margin-top: 20px;
+    margin-bottom: 15px;
+}
+.scale-product{
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+.scale-product:hover{
+    transform: scale(1.05,1.05);
+    box-shadow: 0 12px 20px rgba(0,0,0,0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.c-button {
+    appearance: none;
+    border: 0;
+    border-radius: 5px;
+    background: #eedcc9;
+    color: #5e3c23;
+    padding: 8px 16px;
+    font-size: 16px;
+    cursor:pointer;
+    transition: transform 1s, box-shadow 0.1s;
+
+}
+.c-button:hover{
+    color: #fff;
+    background-color: #d9b48f;
+    transform: scale(1.05,1.05);
+    box-shadow: 0 12px 20px rgba(0,0,0,0.1);
+}
+.c-button:active{
+    color:#5e3c23;
+    background-color: #eedcc9;
+}
+
+.hidden-block{
+    color:#5e3c23;
+    background-color:rgb(245, 235, 220);
+    font-size: 18px;
+    font-weight: 700; 
+    padding: 8px 15px;
+    border-radius: 8px;
+    margin-top: 20px;
+    margin-bottom: 15px;
+}
