@@ -10,10 +10,14 @@ body {
     margin-right: auto;
 }
 
-nav ul {
-    list-style: none;
+nav {
     display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 20px;
 }
+
+nav a,
 nav ul li a {
     text-decoration: none;
     color: #5e3c23;
@@ -22,15 +26,34 @@ nav ul li a {
     padding: 5px 10px;
     border-radius: 20px;
     border-bottom: 2px solid #e4c7a2;
+    transition: background-color 0.2s, color 0.2s, transform 0.2s;
 }
+
+nav a:hover,
 nav ul li a:hover {
     background-color: #d9b48f;
     color: #fff;
 }
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 12px;
+    padding: 0;
+    margin: 0;
+}
+nav ul li {
+    margin: 0;
+}
+
 li {
     margin-bottom: 5px;
 }
 
+.error {
+    color: #d32f2f;
+    margin: 15px 0;
+}
 
 h1 {
     color: #7b4b2d;
@@ -162,3 +185,102 @@ footer {
     margin-top: 20px;
     margin-bottom: 15px;
 }
+
+.admin-panel {
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 20px;
+        }
+        .admin-header {
+            background-color: #d32f2f;
+            color: white;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .admin-header h1 {
+            margin: 0 0 10px 0;
+        }
+        .log-viewer {
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 20px;
+        }
+        .log-entry {
+            background-color: white;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-left: 4px solid #ccc;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+        .log-entry.success {
+            border-left-color: #4CAF50;
+            background-color: #f1f8f4;
+        }
+        .log-entry.failed {
+            border-left-color: #d32f2f;
+            background-color: #fdf1f1;
+        }
+        .log-entry.logout {
+            border-left-color: #ff9800;
+            background-color: #fff9f0;
+        }
+        .status-badge {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-weight: bold;
+            font-size: 12px;
+            margin-right: 10px;
+        }
+        .status-success {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .status-failed {
+            background-color: #d32f2f;
+            color: white;
+        }
+        .status-logout {
+            background-color: #ff9800;
+            color: white;
+        }
+        .log-controls {
+            margin-bottom: 20px;
+            display: flex;
+            gap: 10px;
+        }
+        .log-controls button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .log-controls button:hover {
+            background-color: #45a049;
+        }
+        .log-controls button.danger {
+            background-color: #d32f2f;
+        }
+        .log-controls button.danger:hover {
+            background-color: #b71c1c;
+        }
+        .log-info {
+            background-color: #e3f2fd;
+            padding: 15px;
+            border-radius: 4px;
+            border-left: 4px solid #2196F3;
+            margin-bottom: 20px;
+        }
+        .empty-logs {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+        }
